@@ -1,0 +1,35 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Educa{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <a href="/" class="logo">Educa</a>
+        <ul class="menu">
+            {% if user.is_authenticated %}
+                <li><a href="{% url "accounts:logout" %}">{% trans "Sign out" %}</a></li>
+            {% else %}
+                <li><a href="{% url "accounts:login" %}">{% trans "Sign in" %}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <scripts src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></scripts>
+    <script>
+        $(document).ready(function () {
+            {% block domready %}
+            {% endblock %}
+        });
+    </script>
+</body>
+</html>
