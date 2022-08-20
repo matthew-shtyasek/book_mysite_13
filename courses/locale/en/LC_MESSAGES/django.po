@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-19 22:42+0500\n"
+"POT-Creation-Date: 2022-08-20 15:27+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,118 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\courses\templates\base.html:16
+#: .\courses\models.py:14 .\courses\models.py:36 .\courses\models.py:60
+#: .\courses\models.py:101
+msgid "Title"
+msgstr ""
+
+#: .\courses\models.py:15 .\courses\models.py:41
+msgid "Slug"
+msgstr ""
+
+#: .\courses\models.py:29 .\courses\models.py:99
+msgid "Owner"
+msgstr ""
+
+#: .\courses\models.py:33
+msgid "Subject"
+msgstr ""
+
+#: .\courses\models.py:37
+msgid "Overview"
+msgstr ""
+
+#: .\courses\models.py:44 .\courses\models.py:103
+msgid "Created"
+msgstr ""
+
+#: .\courses\models.py:57
+msgid "Course"
+msgstr ""
+
+#: .\courses\models.py:62
+msgid "Description"
+msgstr ""
+
+#: .\courses\models.py:66 .\courses\models.py:89
+msgid "Order"
+msgstr ""
+
+#: .\courses\models.py:79
+msgid "Module"
+msgstr ""
+
+#: .\courses\models.py:84
+msgid "Content type"
+msgstr ""
+
+#: .\courses\models.py:105
+msgid "Updated"
+msgstr ""
+
+#: .\courses\models.py:115
+msgid "Text"
+msgstr ""
+
+#: .\courses\models.py:120
+msgid "File"
+msgstr ""
+
+#: .\courses\models.py:125
+msgid "Image"
+msgstr ""
+
+#: .\courses\models.py:129
+msgid "Video"
+msgstr ""
+
+#: .\courses\templates\base.html:17
 msgid "Sign out"
 msgstr ""
 
-#: .\courses\templates\base.html:18
+#: .\courses\templates\base.html:19
 msgid "Sign in"
+msgstr ""
+
+#: .\courses\templates\base.html:26
+msgid "Language"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\form.html:6
+#: .\courses\templates\courses\manage\course\form.html:15
+msgid "Edit course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\form.html:8
+#: .\courses\templates\courses\manage\course\form.html:17
+msgid "Create a new course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\form.html:21
+msgid "Course info"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\form.html:25
+msgid "Save course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:4
+#: .\courses\templates\courses\manage\course\list.html:7
+msgid "My courses"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:14
+msgid "Edit"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:15
+msgid "Delete"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:19
+msgid "You haven't created any courses yet"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:22
+msgid "Create new course"
 msgstr ""

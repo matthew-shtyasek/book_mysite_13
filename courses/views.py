@@ -1,8 +1,47 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.conf import settings
+from django.forms import Form
+from django.http import Http404
+from django.utils import translation
+from parler.views import TranslatableCreateView, TranslatableUpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from courses.models import Course
+from courses.templatetags.change_lang import change_lang
+
+
+
+# todo: maybe remove
+def get_course_on_any_language(pk, request, language=None):
+    if language:
+        _course = get_course_or_none(pk, request, language)
+        if _course:
+            _course.set_current_language(language)
+            return _course
+
+    for lang in settings.LANGUAGES:
+        _course = get_course_or_none(pk, request, lang[0])
+        if _course:
+            _course.set_current_language(lang[0])
+            return _course
+
+    raise Http404()
+
+
+def get_course_or_none(pk, request, language):
+    successful = True
+    try:
+        return Course.objects.get(translations__language_code=language,
+                                  pk=pk)
+    except Course.DoesNotExist:
+        successful = False
+    finally:
+        if successful:
+            translation.activate(language)
+            request.LANGUAGE_CODE = language
+    return None
 
 
 class OwnerMixin(object):
@@ -17,28 +56,88 @@ class OwnerEditMixin(object):
         return super(OwnerEditMixin, self).form_valid(form)
 
 
-class OwnerCourseMixin(OwnerMixin):
+class OwnerCourseMixin(OwnerMixin, LoginRequiredMixin):
     model = Course
+    fields = ['subject', 'title', 'slug', 'overview']
+    success_url = reverse_lazy('courses:manage_list')
+    template_name = 'courses/manage/course/list.html'
 
 
 class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
-    fields = ['subject', 'title', 'slug', 'overview']
-    success_url = reverse_lazy('manage_course_list')
-    template_name = 'courses/manage/course/list.html'
+    template_name = 'courses/manage/course/form.html'
+
+    def get_form(self, form_class=None, course=None, initial=None):
+        form = super(OwnerCourseEditMixin, self).get_form(form_class)
+        if course:
+            form.initial = {
+                'subject': course.subject,
+                'title': course.title,
+                'slug': course.slug,
+                'overview': course.overview,
+            }
+        if initial:
+            if not form.initial:
+                form.initial = dict()
+            form.initial.update(initial)
+        return form
+
+    def form_valid(self, form):
+        language = translation.get_language()
+        _course = form.save(commit=False)
+
+        try:
+            course = Course.objects.get(pk=_course.id)
+        except Course.DoesNotExist:
+            course = Course()
+            course.owner = self.request.user
+        course.set_current_language(language)
+
+        cd = form.cleaned_data
+        course.subject = cd['subject']
+        course.title = cd['title']
+        course.slug = cd['slug']
+        course.overview = cd['overview']
+        course.save()
+        return redirect(reverse('courses:manage_list'))
+
 
 
 class ManageCourseListView(OwnerCourseMixin, ListView):
     template_name = 'courses/manage/course/list.html'
 
 
-class CourseCreateView(OwnerCourseMixin, CreateView):
-    pass
+class CourseCreateView(PermissionRequiredMixin, OwnerCourseEditMixin, TranslatableCreateView):
+    permission_required = 'courses.add_course'
+
+    #def get(self, request, *args, **kwargs):
+    #    request.DEFAULT_LANGUAGE = self.get_language()
+    #    return super().get(request, *args, **kwargs)
 
 
-class CourseUpdateView(OwnerCourseMixin, UpdateView):
-    pass
+class CourseUpdateView(PermissionRequiredMixin, OwnerCourseEditMixin, TranslatableUpdateView):
+    permission_required = 'courses.change_course'
+    object = Course()
+
+    def get(self, request, *args, **kwargs):
+        language = translation.get_language()
+        try:
+            course = Course.objects.get(translations__language_code=language, pk=kwargs.get('pk'))
+            form = self.get_form(super().form_class, course)
+        except Course.DoesNotExist:
+            course = Course.objects.get(pk=kwargs.get('pk'))
+            form = self.get_form(super().form_class, initial={'subject': course.subject})
+
+        # form.instance = course
+        # form.data = course
+        context = {
+            'object': course,
+            'form': form,
+        }
+        context.update(kwargs)
+        return render(request, self.template_name, context=context)
 
 
-class CourseDeleteView(OwnerCourseMixin, DeleteView):
+class CourseDeleteView(PermissionRequiredMixin, OwnerCourseMixin, DeleteView):
     template_name = 'courses/manage/course/delete.html'
-    success_url = reverse_lazy('manage_course_list')
+    success_url = reverse_lazy('courses:manage_list')
+    permission_required = 'courses.delete_course'

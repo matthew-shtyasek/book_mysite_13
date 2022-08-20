@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-19 22:42+0500\n"
-"PO-Revision-Date: 2022-08-19 22:46+0000\n"
-"Last-Translator:   <shtyasek2003@mail.ru>\n"
+"POT-Creation-Date: 2022-08-20 15:27+0500\n"
+"PO-Revision-Date: 2022-08-20 15:28+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,120 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\courses\templates\base.html:16
+#: .\courses\models.py:14 .\courses\models.py:36 .\courses\models.py:60
+#: .\courses\models.py:101
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\courses\models.py:15 .\courses\models.py:41
+msgid "Slug"
+msgstr "Название страницы"
+
+#: .\courses\models.py:29 .\courses\models.py:99
+msgid "Owner"
+msgstr "Владелец"
+
+#: .\courses\models.py:33
+msgid "Subject"
+msgstr "Предмет"
+
+#: .\courses\models.py:37
+msgid "Overview"
+msgstr "Обзор"
+
+#: .\courses\models.py:44 .\courses\models.py:103
+msgid "Created"
+msgstr "Создано"
+
+#: .\courses\models.py:57
+#| msgid "Course info"
+msgid "Course"
+msgstr "Информация о курсе"
+
+#: .\courses\models.py:62
+msgid "Description"
+msgstr "Описание"
+
+#: .\courses\models.py:66 .\courses\models.py:89
+#, fuzzy
+msgid "Order"
+msgstr "Поле"
+
+#: .\courses\models.py:79
+msgid "Module"
+msgstr "Модуль"
+
+#: .\courses\models.py:84
+msgid "Content type"
+msgstr "Тип содержимого"
+
+#: .\courses\models.py:105
+msgid "Updated"
+msgstr "Изменено"
+
+#: .\courses\models.py:115
+msgid "Text"
+msgstr "Текст"
+
+#: .\courses\models.py:120
+msgid "File"
+msgstr "Файл"
+
+#: .\courses\models.py:125
+msgid "Image"
+msgstr "Изображение"
+
+#: .\courses\models.py:129
+msgid "Video"
+msgstr "Видео"
+
+#: .\courses\templates\base.html:17
 msgid "Sign out"
 msgstr "Выйти"
 
-#: .\courses\templates\base.html:18
+#: .\courses\templates\base.html:19
 msgid "Sign in"
 msgstr "Войти"
+
+#: .\courses\templates\base.html:26
+msgid "Language"
+msgstr "Язык"
+
+#: .\courses\templates\courses\manage\course\form.html:6
+#: .\courses\templates\courses\manage\course\form.html:15
+msgid "Edit course"
+msgstr "Редактировать курс"
+
+#: .\courses\templates\courses\manage\course\form.html:8
+#: .\courses\templates\courses\manage\course\form.html:17
+msgid "Create a new course"
+msgstr "Создать новый курс"
+
+#: .\courses\templates\courses\manage\course\form.html:21
+msgid "Course info"
+msgstr "Информация о курсе"
+
+#: .\courses\templates\courses\manage\course\form.html:25
+msgid "Save course"
+msgstr "Сохранить курс"
+
+#: .\courses\templates\courses\manage\course\list.html:4
+#: .\courses\templates\courses\manage\course\list.html:7
+msgid "My courses"
+msgstr "Мои курсы"
+
+#: .\courses\templates\courses\manage\course\list.html:14
+msgid "Edit"
+msgstr "Редактировать"
+
+#: .\courses\templates\courses\manage\course\list.html:15
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\courses\templates\courses\manage\course\list.html:19
+msgid "You haven't created any courses yet"
+msgstr "Вы не являетесь владельцем ни одного курса"
+
+#: .\courses\templates\courses\manage\course\list.html:22
+msgid "Create new course"
+msgstr "Создать новый курс"

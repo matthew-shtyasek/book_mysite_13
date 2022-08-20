@@ -1,12 +1,15 @@
 from django.contrib import admin
+from parler.admin import TranslatableAdmin
 
 from courses.models import Subject, Course, Module
 
 
 @admin.register(Subject)
-class SubjectAdmin(admin.ModelAdmin):
+class SubjectAdmin(TranslatableAdmin):
     list_display = ['title', 'slug']
-    prepopulated_fields = {'slug': ('title', )}
+
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('title', )}
 
 
 class ModuleInline(admin.StackedInline):
@@ -14,9 +17,11 @@ class ModuleInline(admin.StackedInline):
 
 
 @admin.register(Course)
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(TranslatableAdmin):
     list_display = ['title', 'slug', 'subject', 'created']
     list_filter = ['created', 'subject']
-    search_fields = ['title', 'slug', 'overview']
-    prepopulated_fields = {'slug': ('title', )}
+    search_fields = ['translations__title', 'translations__slug', 'overview']
     inlines = [ModuleInline]
+
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('title', )}

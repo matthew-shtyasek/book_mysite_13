@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My courses" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "My courses" %}</h1>
+
+    <div class="module">
+        {% for course in object_list %}
+            <div class="course-info">
+
+                <h3>
+                    {% if course.title %}
+                        {{ course.title }}
+                    {% else %}
+                        {% trans "Not found title on your language" %}
+                    {% endif %}
+                </h3>
+                <p>
+                    <a href="{% url "courses:edit" course.id %}">{% trans "Edit" %}</a>
+                    <a href="{% url "courses:delete" course.id %}">{% trans "Delete" %}</a>
+                </p>
+            </div>
+        {% empty %}
+            <p>{% trans "You haven't created any courses yet" %}.</p>
+        {% endfor %}
+        <p>
+            <a href="{% url "courses:create" %}" class="button">{% trans "Create new course" %}</a>
+        </p>
+    </div>
+{% endblock %}

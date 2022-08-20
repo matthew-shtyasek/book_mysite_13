@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% if object %}
+        {% trans "Edit course" %} "{{ object.title }}"
+    {% else %}
+        {% trans "Create a new course" %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if object %}
+            {% trans "Edit course" %} "{{ object.title }}"
+        {% else %}
+            {% trans "Create a new course" %}
+        {% endif %}
+    </h1>
+    <div class="module">
+        <h2>{% trans "Course info" %}</h2>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="{% trans "Save course" %}"></p>
+        </form>
+    </div>
+{% endblock %}
