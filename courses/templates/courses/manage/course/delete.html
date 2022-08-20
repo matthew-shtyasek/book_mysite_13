@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete course" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Delete course" %} "{{ object.title }}"</h1>
+
+    <div class="module">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>{% trans "Are you shure you want to delete" %} "{{ object }}"?</p>
+            <input type="submit" value="{% trans "Confirm" %}">
+        </form>
+    </div>
+{% endblock %}
