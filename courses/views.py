@@ -1,19 +1,16 @@
 from django.conf import settings
-from django.forms import Form
 from django.http import Http404
 from django.utils import translation
-from django.views.generic.base import TemplateResponseMixin, View
-from django.views.generic.edit import ModelFormMixin
+from django.views import View
+from django.views.generic.base import TemplateResponseMixin
 from parler.views import TranslatableCreateView, TranslatableUpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView, DeleteView
 
 from courses.forms import ModuleFormSet
 from courses.models import Course
-from courses.templatetags.change_lang import change_lang
-
 
 
 # todo: maybe remove
@@ -85,12 +82,6 @@ class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
             form.initial.update(initial)
         return form
 
-    # def form_valid(self, form):
-    #     self.object = form.save(commit=False)
-    #     self.object.owner = self.request.user
-    #     # self.object.translations
-    #     form.save()
-    #     return super(OwnerCourseEditMixin, self).form_valid(form)
     def form_valid(self, form):
         language = translation.get_language()
         _course = form.save(commit=False)
@@ -118,14 +109,17 @@ class ManageCourseListView(OwnerCourseMixin, ListView):
 class CourseCreateView(PermissionRequiredMixin, OwnerCourseEditMixin, TranslatableCreateView):
     permission_required = 'courses.add_course'
 
-    #def get(self, request, *args, **kwargs):
-    #    request.DEFAULT_LANGUAGE = self.get_language()
-    #    return super().get(request, *args, **kwargs)
-
 
 class CourseUpdateView(PermissionRequiredMixin, OwnerCourseEditMixin, TranslatableUpdateView):
     permission_required = 'courses.change_course'
-    object = Course()
+    object = None
+
+    def get_object(self, queryset=None):
+        try:
+            object_get = Course.objects.get(pk=self.kwargs['pk'])
+        except Course.DoesNotExist:
+            return Http404('Course does not exist!')
+        return object_get
 
     def get(self, request, *args, **kwargs):
         language = translation.get_language()
@@ -136,8 +130,6 @@ class CourseUpdateView(PermissionRequiredMixin, OwnerCourseEditMixin, Translatab
             course = Course.objects.get(pk=kwargs.get('pk'))
             form = self.get_form(super().form_class, initial={'subject': course.subject})
 
-        # form.instance = course
-        # form.data = course
         context = {
             'object': course,
             'form': form,
@@ -152,36 +144,35 @@ class CourseDeleteView(PermissionRequiredMixin, OwnerCourseMixin, DeleteView):
     permission_required = 'courses.delete_course'
 
 
-# class CourseModuleUpdateView(TemplateResponseMixin, View):
-#     template_name = 'courses/manage/module/formset.html'
-#     course = None
-#
-#     def get_formset(self, data=None):
-#         return ModuleFormSet(instance=self.course,
-#                              data=data)
-#
-#     def dispatch(self, request, pk):
-#         self.course = get_object_or_404(Course,
-#                                         id=pk,
-#                                         owner=request.user)
-#         return super(CourseModuleUpdateView, self).dispatch(request, pk)
-#
-#     def get(self, request, *args, **kwargs):
-#         formset = self.get_formset()
-#         context = {
-#             'course': self.course,
-#             'formset': formset
-#         }
-#         return self.render_to_response(context)
-#
-#     def post(self, request, *args, **kwargs):
-#         formset = self.get_formset(data=request.POST)
-#         if formset.is_valid():
-#             formset.save()
-#             return redirect(reverse('courses:manage_list'))
-#         context = {
-#             'course': self.course,
-#             'formset': formset
-#         }
-#         return self.render_to_response(context)
-#
+class CourseModuleUpdateView(TemplateResponseMixin, View):
+    template_name = 'courses/manage/module/formset.html'
+    course = None
+
+    def get_formset(self, data=None):
+        return ModuleFormSet(instance=self.course,
+                             data=data)
+
+    def dispatch(self, request, pk):
+        self.course = get_object_or_404(Course,
+                                        id=pk,
+                                        owner=request.user)
+        return super(CourseModuleUpdateView, self).dispatch(request, pk)
+
+    def get(self, request, *args, **kwargs):
+        formset = self.get_formset()
+        context = {
+            'course': self.course,
+            'formset': formset
+        }
+        return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        formset = self.get_formset(data=request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse('courses:manage_list'))
+        context = {
+            'course': self.course,
+            'formset': formset
+        }
+        return self.render_to_response(context)

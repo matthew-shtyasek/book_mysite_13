@@ -20,7 +20,7 @@
                 <p>
                     <a href="{% url "courses:edit" course.id %}">{% trans "Edit" %}</a>
                     <a href="{% url "courses:delete" course.id %}">{% trans "Delete" %}</a>
-                    <a href="{% url "courses:module_update" %}">{% trans "Edit modules" %}</a>
+                    <a href="{% url "courses:module_update" course.id %}">{% trans "Edit modules" %}</a>
                 </p>
             </div>
         {% empty %}
