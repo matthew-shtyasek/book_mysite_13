@@ -21,6 +21,11 @@
                     <a href="{% url "courses:edit" course.id %}">{% trans "Edit" %}</a>
                     <a href="{% url "courses:delete" course.id %}">{% trans "Delete" %}</a>
                     <a href="{% url "courses:module_update" course.id %}">{% trans "Edit modules" %}</a>
+                    {% if course.modules.count > 0 %}
+                        <a href="{% url "courses:module_content_list" course.modules.first.id %}">
+                            {% trans "Manage contents" %}
+                        </a>
+                    {% endif %}
                 </p>
             </div>
         {% empty %}

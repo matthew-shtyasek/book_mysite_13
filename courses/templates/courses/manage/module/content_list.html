@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load course %}
+
+{% block title %}
+    {% trans "Module" %} {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %}
+
+{% block content %}
+    {% with course=module.course %}
+        <h1>{% trans "Course" %} "{{ course.title }}"</h1>
+        <div class="contents">
+            <h3>{% trans "Modules" %}</h3>
+            <ul id="modules">
+                {% for m in course.modules.all %}
+                    <li data-id="{{ m.id }}" {% if m == module %} class="selected" {% endif %}>
+                        <a href="{% url "courses:module_content_list" m.id %}">
+                            <span>
+                                {% trans "Module" %} <span class="order">{{ m.order|add:1 }}</span>
+                            </span>
+                            <br>
+                            {{ m.title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>{% trans "No modules yet." %}</li>
+                {% endfor %}
+            </ul>
+            <p>
+                <a href="{% url "courses:module_update" course.id %}">{% trans "Edit modules" %}</a>
+            </p>
+        </div>
+        <div class="module">
+            <h2>{% trans "Module" %} {{ module.order|add:1 }}: {{ module.title }}</h2>
+            <h3>{% trans "Module contents:" %}</h3>
+
+            <div id="module-contents">
+                {% for content in module.contents.all %}
+                    <div data-id="{{ content.id }}">
+
+                        {% with item=content.item %}
+                            <p>{{ item }} ({{ item|model_name }})</p>
+
+                            <a href="{% url "courses:module_content_update" module.id item|model_name item.id %}">
+                                {% trans "Edit" %}
+                            </a>
+
+                            <form action="{% url "courses:module_content_delete" content.id %}" method="post">
+                                <input type="submit" value="{% trans "Delete" %}">
+                                {% csrf_token %}
+                            </form>
+                        {% endwith %}
+
+                    </div>
+                {% empty %}
+                    <p>{% trans "This module has no contents yet." %}</p>
+                {% endfor %}
+            </div>
+
+            <h3>{% trans "Add new content:" %}</h3>
+            <ul class="content-types">
+                <li>
+                    <a href="{% url "courses:module_content_create" module.id "text" %}">{% trans "Text" %}</a>
+                    <a href="{% url "courses:module_content_create" module.id "image" %}">{% trans "Image" %}</a>
+                    <a href="{% url "courses:module_content_create" module.id "video" %}">{% trans "Video" %}</a>
+                    <a href="{% url "courses:module_content_create" module.id "file" %}">{% trans "File" %}</a>
+                </li>
+            </ul>
+        </div>
+    {% endwith %}
+{% endblock %}
