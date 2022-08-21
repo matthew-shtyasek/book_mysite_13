@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-20 15:27+0500\n"
+"POT-Creation-Date: 2022-08-21 16:59+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\courses\models.py:14 .\courses\models.py:36 .\courses\models.py:60
-#: .\courses\models.py:101
+#: .\courses\models.py:14 .\courses\models.py:36
 msgid "Title"
 msgstr ""
 
@@ -27,7 +26,7 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
-#: .\courses\models.py:29 .\courses\models.py:99
+#: .\courses\models.py:29
 msgid "Owner"
 msgstr ""
 
@@ -35,51 +34,31 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-#: .\courses\models.py:37
+#: .\courses\models.py:37 .\courses\templates\courses\course\detail.html:12
 msgid "Overview"
 msgstr ""
 
-#: .\courses\models.py:44 .\courses\models.py:103
+#: .\courses\models.py:44
 msgid "Created"
 msgstr ""
 
-#: .\courses\models.py:57
-msgid "Course"
-msgstr ""
-
-#: .\courses\models.py:62
-msgid "Description"
-msgstr ""
-
-#: .\courses\models.py:66 .\courses\models.py:89
-msgid "Order"
-msgstr ""
-
-#: .\courses\models.py:79
-msgid "Module"
-msgstr ""
-
-#: .\courses\models.py:84
-msgid "Content type"
-msgstr ""
-
-#: .\courses\models.py:105
-msgid "Updated"
-msgstr ""
-
-#: .\courses\models.py:115
+#: .\courses\models.py:102
+#: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr ""
 
-#: .\courses\models.py:120
+#: .\courses\models.py:107
+#: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr ""
 
-#: .\courses\models.py:125
+#: .\courses\models.py:112
+#: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr ""
 
-#: .\courses\models.py:129
+#: .\courses\models.py:116
+#: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr ""
 
@@ -95,6 +74,85 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: .\courses\templates\courses\course\detail.html:16
+#, python-format
+msgid ""
+"\n"
+"                    %(modules_count)s modules.\n"
+"                    Instructor: %(owner_name)s\n"
+"                "
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:6
+#, python-format
+msgid ""
+"\n"
+"            %(subject_title)s courses\n"
+"        "
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:10
+#: .\courses\templates\courses\course\list.html:21
+msgid "All courses"
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:17
+#, python-format
+msgid ""
+"\n"
+"                %(subject_title)s courses\n"
+"            "
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:25
+msgid "Subjects"
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:29
+msgid "All"
+msgstr ""
+
+#: .\courses\templates\courses\course\list.html:55
+#, python-format
+msgid ""
+"\n"
+"                        %(total_modules)s modules.\n"
+"                        Instructor: %(owner_name)s\n"
+"                    "
+msgstr ""
+
+#: .\courses\templates\courses\manage\content\form.html:6
+#: .\courses\templates\courses\manage\content\form.html:15
+msgid "Edit content"
+msgstr ""
+
+#: .\courses\templates\courses\manage\content\form.html:8
+#: .\courses\templates\courses\manage\content\form.html:17
+msgid "Add a new content"
+msgstr ""
+
+#: .\courses\templates\courses\manage\content\form.html:22
+#: .\courses\templates\courses\manage\course\form.html:21
+msgid "Course info"
+msgstr ""
+
+#: .\courses\templates\courses\manage\content\form.html:26
+msgid "Save content"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\delete.html:4
+#: .\courses\templates\courses\manage\course\delete.html:7
+msgid "Delete course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\delete.html:12
+msgid "Are you shure you want to delete"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\delete.html:13
+msgid "Confirm"
+msgstr ""
+
 #: .\courses\templates\courses\manage\course\form.html:6
 #: .\courses\templates\courses\manage\course\form.html:15
 msgid "Edit course"
@@ -103,10 +161,6 @@ msgstr ""
 #: .\courses\templates\courses\manage\course\form.html:8
 #: .\courses\templates\courses\manage\course\form.html:17
 msgid "Create a new course"
-msgstr ""
-
-#: .\courses\templates\courses\manage\course\form.html:21
-msgid "Course info"
 msgstr ""
 
 #: .\courses\templates\courses\manage\course\form.html:25
@@ -118,18 +172,73 @@ msgstr ""
 msgid "My courses"
 msgstr ""
 
-#: .\courses\templates\courses\manage\course\list.html:14
+#: .\courses\templates\courses\manage\course\list.html:17
+msgid "Not found title on your language"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:21
+#: .\courses\templates\courses\manage\module\content_list.html:45
+#: .\courses\templates\courses\manage\module\formset.html:5
+#: .\courses\templates\courses\manage\module\formset.html:9
 msgid "Edit"
 msgstr ""
 
-#: .\courses\templates\courses\manage\course\list.html:15
+#: .\courses\templates\courses\manage\course\list.html:22
+#: .\courses\templates\courses\manage\module\content_list.html:49
 msgid "Delete"
 msgstr ""
 
-#: .\courses\templates\courses\manage\course\list.html:19
+#: .\courses\templates\courses\manage\course\list.html:23
+#: .\courses\templates\courses\manage\module\content_list.html:30
+msgid "Edit modules"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:26
+msgid "Manage contents"
+msgstr ""
+
+#: .\courses\templates\courses\manage\course\list.html:32
 msgid "You haven't created any courses yet"
 msgstr ""
 
-#: .\courses\templates\courses\manage\course\list.html:22
+#: .\courses\templates\courses\manage\course\list.html:35
 msgid "Create new course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:6
+#: .\courses\templates\courses\manage\module\content_list.html:19
+#: .\courses\templates\courses\manage\module\content_list.html:34
+msgid "Module"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:11
+msgid "Course"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:13
+msgid "Modules"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:26
+msgid "No modules yet."
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:35
+msgid "Module contents:"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:56
+msgid "This module has no contents yet."
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\content_list.html:60
+msgid "Add new content:"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\formset.html:12
+msgid "Course modules"
+msgstr ""
+
+#: .\courses\templates\courses\manage\module\formset.html:18
+msgid "Save modules"
 msgstr ""

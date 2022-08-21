@@ -1,18 +1,19 @@
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.apps import apps
 from django.conf import settings
+from django.db.models import Count
 from django.forms import Form, modelform_factory
 from django.http import Http404
 from django.utils import translation
 from django.views.generic.base import TemplateResponseMixin, View
-from parler.views import TranslatableCreateView, TranslatableUpdateView
+from parler.views import TranslatableCreateView, TranslatableUpdateView, TranslatableSlugMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from courses.forms import ModuleFormSet
-from courses.models import Course, Module, Content
+from courses.models import Course, Module, Content, Subject
 from courses.templatetags.change_lang import change_lang
 
 
@@ -280,3 +281,30 @@ class ContentOrderView(CsrfExemptMixin, JsonRequestResponseMixin, View):
             Content.objects.filter(id=id,
                                    module__course__owner=request.user).update(order=order)
         return self.render_json_response({'saved': 'OK'})
+
+
+class CourseListView(TemplateResponseMixin, View):
+    model = Course
+    template_name = 'courses/course/list.html'
+
+    def get(self, request, subject_slug=None):
+        subjects = Subject.objects.annotate(
+            total_courses=Count('courses'))
+        courses = Course.objects.annotate(total_modules=Count('modules'))
+        subject = None
+        if subject_slug:
+            language = request.LANGUAGE_CODE
+            subject = get_object_or_404(Subject, translations__slug=subject_slug)
+            courses = Course.objects.filter(subject=subject)
+        context = {
+            'subjects': subjects,
+            'subject': subject,
+            'courses': courses,
+        }
+        return self.render_to_response(context)
+
+
+class CourseDetailView(TranslatableSlugMixin, DetailView):
+    model = Course
+    template_name = 'courses/course/detail.html'
+

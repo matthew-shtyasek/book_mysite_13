@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+from courses.views import CourseListView
+
 urlpatterns = i18n_patterns(
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('course/', include('courses.urls', namespace='courses')),
+    path('', CourseListView.as_view(), name='course_list'),
 )

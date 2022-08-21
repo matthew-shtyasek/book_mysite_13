@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+{% block content %}
+    {% with subject=course.subject %}
+        <h1>{{ object.title }}</h1>
+        <div class="module">
+            <h2>{% trans "Overview" %}</h2>
+            <p>
+                <a href="{% url "courses:list_subject" subject.slug %}">{{ subject.title }}</a>
+                <br>
+                {% blocktrans with modules_count=course.modules.count owner_name=course.owner.get_full_name %}
+                    {{ modules_count }} modules.
+                    Instructor: {{ owner_name }}
+                {% endblocktrans %}
+            </p>
+            {{ object.overview|linebreaks }}
+        </div>
+    {% endwith %}
+{% endblock %}
