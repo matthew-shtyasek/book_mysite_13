@@ -69,3 +69,40 @@
         </div>
     {% endwith %}
 {% endblock %}
+
+{% block domready %}
+    $('#modules').sortable({
+        stop: function (event, ui) {
+            let modules_order = {};
+            $('#modules').children().each(function () {
+                $(this).find('.order').text($(this).index() + 1); // обновляем поле порядкового номера
+                modules_order[$(this).data('id')] = $(this).index(); // связываем порядковый номер с идентификатором объекта
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{% url "courses:module_order" %}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(modules_order)
+            });
+        }
+    });
+
+    $('#module-contents').sortable({
+        stop: function (event, ui) {
+            let contents_order = {};
+            $('#module-contents').children().each(function () {
+                $(this).find('.order').text($(this).index() + 1);
+                contents_order[$(this).data('id')] = $(this).index()
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "courses:content_order" %}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(contents_order)
+            });
+        }
+    });
+{% endblock %}
