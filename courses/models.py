@@ -50,20 +50,14 @@ class Course(TranslatableModel):
         return self.title
 
 
-class Module(TranslatableModel):
+class Module(models.Model):
     course = models.ForeignKey(Course,
                                related_name='modules',
-                               on_delete=models.CASCADE,
-                               verbose_name=_("Course"))
-    translations = TranslatedFields(
-        title=models.CharField(max_length=200,
-                               verbose_name=_("Title")),
-        description=models.TextField(blank=True,
-                                     verbose_name=_("Description")),
-     )
+                               on_delete=models.CASCADE)
+    title=models.CharField(max_length=200)
+    description=models.TextField(blank=True)
     order = OrderField(blank=True,
-                       for_fields=['course'],
-                       verbose_name=_("Order"))
+                       for_fields=['course'])
 
     class Meta:
         ordering = ['order']
@@ -72,21 +66,18 @@ class Module(TranslatableModel):
         return f'{self.order}. {self.title}'
 
 
-class Content(TranslatableModel):
+class Content(models.Model):
     module = models.ForeignKey(Module,
                                related_name='contents',
-                               on_delete=models.CASCADE,
-                               verbose_name=_("Module"))
+                               on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType,
                                      on_delete=models.CASCADE,
                                      limit_choices_to={'model__in': (
-                                         'text', 'video', 'image', 'file')},
-                                     verbose_name=_("Content type"))
+                                         'text', 'video', 'image', 'file')})
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
     order = OrderField(blank=True,
-                       for_fields=['module'],
-                       verbose_name=_("Order"))
+                       for_fields=['module'])
 
     class Meta:
         ordering = ['order']
@@ -95,14 +86,10 @@ class Content(TranslatableModel):
 class BaseItem(models.Model):
     owner = models.ForeignKey(User,
                               related_name='%(class)s_related',
-                              on_delete=models.CASCADE,
-                              verbose_name=_("Owner"))
-    title = models.CharField(max_length=200,
-                             verbose_name=_("Title"))
-    created = models.DateTimeField(auto_now_add=True,
-                                   verbose_name=_("Created"))
-    updated = models.DateTimeField(auto_now=True,
-                                   verbose_name=_("Updated"))
+                              on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
