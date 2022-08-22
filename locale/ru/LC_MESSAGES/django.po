@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-22 09:22+0500\n"
-"PO-Revision-Date: 2022-08-22 09:23+0000\n"
+"POT-Creation-Date: 2022-08-22 13:23+0500\n"
+"PO-Revision-Date: 2022-08-22 13:43+0000\n"
 "Last-Translator: Матей Штясек <shtyasek2003@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,13 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\book_mysite_10\settings.py:125
+#: .\book_mysite_10\settings.py:127
 msgid "English"
 msgstr "Английский"
 
-#: .\book_mysite_10\settings.py:126
+#: .\book_mysite_10\settings.py:128
 msgid "Russian"
 msgstr "Русский"
+
+#: .\students\templates\students\course\detail.html:9
+msgid "Modules"
+msgstr "Модули"
+
+#: .\students\templates\students\course\detail.html:15
+msgid "Module"
+msgstr "Модуль"
+
+#: .\students\templates\students\course\detail.html:22
+msgid "No modules yet."
+msgstr "Нет модулей."
+
+#: .\students\templates\students\course\list.html:4
+#: .\students\templates\students\course\list.html:7
+msgid "My courses"
+msgstr "Мои курсы"
+
+#: .\students\templates\students\course\list.html:13
+msgid "Access contents"
+msgstr "Посмотреть контент"
+
+#: .\students\templates\students\course\list.html:19
+#, python-format
+msgid ""
+"\n"
+"                    You are not enrolled in any courses yet.\n"
+"                    <a href=\"%(course_list)s\">Browse courses</a>\n"
+"                     to enroll in a course.\n"
+"                "
+msgstr ""
+"\n"
+"У вас не добавлено никаких курсов.\n"
+"Вы можете их добавить из <a href=\"%(course_list)s\">списка курсов</a>."
 
 #: .\students\templates\students\student\registration.html:4
 #: .\students\templates\students\student\registration.html:7

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-22 09:22+0500\n"
+"POT-Creation-Date: 2022-08-22 13:23+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\courses\models.py:14 .\courses\models.py:39
+#: .\courses\models.py:15 .\courses\models.py:43 .\courses\models.py:64
+#: .\courses\models.py:97
 msgid "Title"
 msgstr ""
 
-#: .\courses\models.py:32
-msgid "Owner"
+#: .\courses\models.py:20 .\courses\models.py:49
+msgid "Slug"
 msgstr ""
 
 #: .\courses\models.py:36
+msgid "Owner"
+msgstr ""
+
+#: .\courses\models.py:40
 msgid "Subject"
 msgstr ""
 
-#: .\courses\models.py:40 .\courses\templates\courses\course\detail.html:12
+#: .\courses\models.py:44 .\courses\templates\courses\course\detail.html:12
 msgid "Overview"
 msgstr ""
 
-#: .\courses\models.py:44
+#: .\courses\models.py:51
 msgid "Created"
 msgstr ""
 
-#: .\courses\models.py:102
+#: .\courses\models.py:65
+msgid "Description"
+msgstr ""
+
+#: .\courses\models.py:113
 #: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr ""
 
-#: .\courses\models.py:107
+#: .\courses\models.py:118
 #: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr ""
 
-#: .\courses\models.py:112
+#: .\courses\models.py:123
 #: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr ""
 
-#: .\courses\models.py:116
+#: .\courses\models.py:127
 #: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr ""
@@ -68,6 +77,10 @@ msgstr ""
 
 #: .\courses\templates\base.html:26
 msgid "Language"
+msgstr ""
+
+#: .\courses\templates\courses\content\file.html:3
+msgid "Download file"
 msgstr ""
 
 #: .\courses\templates\courses\course\detail.html:16

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-22 09:22+0500\n"
+"POT-Creation-Date: 2022-08-22 13:23+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\book_mysite_10\settings.py:125
+#: .\book_mysite_10\settings.py:127
 msgid "English"
 msgstr ""
 
-#: .\book_mysite_10\settings.py:126
+#: .\book_mysite_10\settings.py:128
 msgid "Russian"
+msgstr ""
+
+#: .\students\templates\students\course\detail.html:9
+msgid "Modules"
+msgstr ""
+
+#: .\students\templates\students\course\detail.html:15
+msgid "Module"
+msgstr ""
+
+#: .\students\templates\students\course\detail.html:22
+msgid "No modules yet."
+msgstr ""
+
+#: .\students\templates\students\course\list.html:4
+#: .\students\templates\students\course\list.html:7
+msgid "My courses"
+msgstr ""
+
+#: .\students\templates\students\course\list.html:13
+msgid "Access contents"
+msgstr ""
+
+#: .\students\templates\students\course\list.html:19
+#, python-format
+msgid ""
+"\n"
+"                    You are not enrolled in any courses yet.\n"
+"                    <a href=\"%(course_list)s\">Browse courses</a>\n"
+"                     to enroll in a course.\n"
+"                "
 msgstr ""
 
 #: .\students\templates\students\student\registration.html:4

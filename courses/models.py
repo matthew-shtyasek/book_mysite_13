@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.template.loader import render_to_string
 from parler.models import TranslatableModel, TranslatedFields
 from django.utils.translation import gettext_lazy as _
 
@@ -13,7 +14,10 @@ class Subject(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=200, verbose_name=_("Title")),
     )
-    slug = models.SlugField(max_length=200, unique=True, db_index=True)
+    slug = models.SlugField(max_length=200,
+                            unique=True,
+                            db_index=True,
+                            verbose_name=_("Slug"))
 
     class Meta:
         ordering = ['slug']
@@ -39,7 +43,10 @@ class Course(TranslatableModel):
                                verbose_name=_("Title")),
         overview=models.TextField(verbose_name=_("Overview")),
     )
-    slug = models.SlugField(max_length=200, unique=True, db_index=True)
+    slug = models.SlugField(max_length=200,
+                            unique=True,
+                            db_index=True,
+                            verbose_name=_("Slug"))
     created = models.DateTimeField(auto_now_add=True,
                                    verbose_name=_("Created"))
 
@@ -54,8 +61,8 @@ class Module(models.Model):
     course = models.ForeignKey(Course,
                                related_name='modules',
                                on_delete=models.CASCADE)
-    title=models.CharField(max_length=200)
-    description=models.TextField(blank=True)
+    title=models.CharField(max_length=200, verbose_name=_("Title"))
+    description=models.TextField(blank=True, verbose_name=_("Description"))
     order = OrderField(blank=True,
                        for_fields=['course'])
 
@@ -87,12 +94,16 @@ class BaseItem(models.Model):
     owner = models.ForeignKey(User,
                               related_name='%(class)s_related',
                               on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name=_("Title"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
+
+    def render(self):
+        return render_to_string(template_name=f'courses/content/{self._meta.model_name}.html',
+                                context={'item': self})
 
     def __str__(self):
         return self.title
@@ -103,14 +114,14 @@ class Text(BaseItem):
 
 
 class File(BaseItem):
-    content=models.FileField(upload_to='files',
-                             verbose_name=_("File"))
+    content = models.FileField(upload_to='files',
+                               verbose_name=_("File"))
 
 
 class Image(BaseItem):
-    content=models.ImageField(upload_to='images',
-                              verbose_name=_("Image"))
+    content = models.ImageField(upload_to='images',
+                                verbose_name=_("Image"))
 
 
 class Video(BaseItem):
-    content=models.URLField(verbose_name=_("Video"))
+    content = models.URLField(verbose_name=_("Video"))

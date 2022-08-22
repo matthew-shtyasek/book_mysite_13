@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-22 09:22+0500\n"
-"PO-Revision-Date: 2022-08-22 09:22+0000\n"
+"POT-Creation-Date: 2022-08-22 13:23+0500\n"
+"PO-Revision-Date: 2022-08-22 13:25+0000\n"
 "Last-Translator: Матей Штясек <shtyasek2003@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,42 +19,51 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\courses\models.py:14 .\courses\models.py:39
+#: .\courses\models.py:15 .\courses\models.py:43 .\courses\models.py:64
+#: .\courses\models.py:97
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\courses\models.py:32
+#: .\courses\models.py:20 .\courses\models.py:49
+msgid "Slug"
+msgstr "Название страницы"
+
+#: .\courses\models.py:36
 msgid "Owner"
 msgstr "Владелец"
 
-#: .\courses\models.py:36
+#: .\courses\models.py:40
 msgid "Subject"
 msgstr "Предмет"
 
-#: .\courses\models.py:40 .\courses\templates\courses\course\detail.html:12
+#: .\courses\models.py:44 .\courses\templates\courses\course\detail.html:12
 msgid "Overview"
 msgstr "Обзор"
 
-#: .\courses\models.py:44
+#: .\courses\models.py:51
 msgid "Created"
 msgstr "Создано"
 
-#: .\courses\models.py:102
+#: .\courses\models.py:65
+msgid "Description"
+msgstr "Описание"
+
+#: .\courses\models.py:113
 #: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr "Текст"
 
-#: .\courses\models.py:107
+#: .\courses\models.py:118
 #: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr "Файл"
 
-#: .\courses\models.py:112
+#: .\courses\models.py:123
 #: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr "Изображение"
 
-#: .\courses\models.py:116
+#: .\courses\models.py:127
 #: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr "Видео"
@@ -70,6 +79,10 @@ msgstr "Войти"
 #: .\courses\templates\base.html:26
 msgid "Language"
 msgstr "Язык"
+
+#: .\courses\templates\courses\content\file.html:3
+msgid "Download file"
+msgstr "Скачать файл"
 
 #: .\courses\templates\courses\course\detail.html:16
 #, python-format
@@ -258,9 +271,6 @@ msgstr "Модули курса"
 msgid "Save modules"
 msgstr "Сохранить модули"
 
-#~ msgid "Slug"
-#~ msgstr "Название страницы"
-
 #, python-format
 #~ msgid ""
 #~ "\n"
@@ -271,9 +281,6 @@ msgstr "Сохранить модули"
 #~ "\n"
 #~ "%(modules_count)s модулей.\n"
 #~ "Автор: %(owner_name)s"
-
-#~ msgid "Description"
-#~ msgstr "Описание"
 
 #, fuzzy
 #~ msgid "Order"
