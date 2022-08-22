@@ -23,6 +23,9 @@ class Subject(TranslatableModel):
 
 
 class Course(TranslatableModel):
+    students = models.ManyToManyField(User,
+                                      related_name='courses_joined',
+                                      blank=True)
     owner = models.ForeignKey(User,
                               related_name='courses',
                               on_delete=models.CASCADE,

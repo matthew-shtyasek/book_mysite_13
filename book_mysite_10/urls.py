@@ -25,5 +25,6 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('course/', include('courses.urls', namespace='courses')),
+    path('students/', include('students.urls', namespace='students')),
     path('', CourseListView.as_view(), name='course_list'),
 )

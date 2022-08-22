@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign up" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Sign up" %}</h1>
+    <div class="module">
+        <p>{% trans "Enter your details to create account:" %}</p>
+        <form action="" method="post">
+            {{ form.as_p }}
+            <input type="submit" value="{% trans "Create my account" %}">
+        </form>
+    </div>
+{% endblock %}

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rosetta',
     'parler',
+    'students.apps.StudentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,5 @@ PARLER_LANGUAGES = {
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('students:course_list')

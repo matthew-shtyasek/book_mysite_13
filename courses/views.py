@@ -18,6 +18,9 @@ from courses.templatetags.change_lang import change_lang
 
 
 # todo: maybe remove
+from students.forms import CourseEnrollForm
+
+
 def get_course_on_any_language(pk, request, language=None):
     if language:
         _course = get_course_or_none(pk, request, language)
@@ -130,12 +133,16 @@ class CourseUpdateView(PermissionRequiredMixin, OwnerCourseEditMixin, Translatab
 
     def get(self, request, *args, **kwargs):
         language = translation.get_language()
+        initial = {}
         try:
             course = Course.objects.get(translations__language_code=language, pk=kwargs.get('pk'))
-            form = self.get_form(super().form_class, course)
+            initial['slug'] = course.slug
+            form = self.get_form(super().form_class, course, initial)
         except Course.DoesNotExist:
             course = Course.objects.get(pk=kwargs.get('pk'))
-            form = self.get_form(super().form_class, initial={'subject': course.subject})
+            initial['slug'] = course.slug
+            initial['subject'] = course.subject
+            form = self.get_form(super().form_class, initial=initial)
 
         # form.instance = course
         # form.data = course
@@ -312,3 +319,7 @@ class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/course/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['enroll_form'] = CourseEnrollForm(initial={'course': self.object})
+        return context

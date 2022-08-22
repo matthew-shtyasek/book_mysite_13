@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-21 17:21+0500\n"
-"PO-Revision-Date: 2022-08-21 17:22+0000\n"
+"POT-Creation-Date: 2022-08-22 09:22+0500\n"
+"PO-Revision-Date: 2022-08-22 09:22+0000\n"
 "Last-Translator: Матей Штясек <shtyasek2003@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,42 +19,42 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: .\courses\models.py:14 .\courses\models.py:36
+#: .\courses\models.py:14 .\courses\models.py:39
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\courses\models.py:29
+#: .\courses\models.py:32
 msgid "Owner"
 msgstr "Владелец"
 
-#: .\courses\models.py:33
+#: .\courses\models.py:36
 msgid "Subject"
 msgstr "Предмет"
 
-#: .\courses\models.py:37 .\courses\templates\courses\course\detail.html:12
+#: .\courses\models.py:40 .\courses\templates\courses\course\detail.html:12
 msgid "Overview"
 msgstr "Обзор"
 
-#: .\courses\models.py:41
+#: .\courses\models.py:44
 msgid "Created"
 msgstr "Создано"
 
-#: .\courses\models.py:99
+#: .\courses\models.py:102
 #: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr "Текст"
 
-#: .\courses\models.py:104
+#: .\courses\models.py:107
 #: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr "Файл"
 
-#: .\courses\models.py:109
+#: .\courses\models.py:112
 #: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr "Изображение"
 
-#: .\courses\models.py:113
+#: .\courses\models.py:116
 #: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr "Видео"
@@ -73,11 +73,6 @@ msgstr "Язык"
 
 #: .\courses\templates\courses\course\detail.html:16
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                        %(total_modules)s modules.\n"
-#| "                        Instructor: %(owner_name)s\n"
-#| "                    "
 msgid ""
 "\n"
 "                    %(total_modules)s modules.\n"
@@ -87,6 +82,14 @@ msgstr ""
 "\n"
 "%(total_modules)s модулей.\n"
 "Автор: %(owner_name)s"
+
+#: .\courses\templates\courses\course\detail.html:26
+msgid "Enroll now"
+msgstr "Записаться сейчас"
+
+#: .\courses\templates\courses\course\detail.html:30
+msgid "Register to enroll"
+msgstr "Зарегистрироваться, чтобы записаться"
 
 #: .\courses\templates\courses\course\list.html:6
 #, python-format

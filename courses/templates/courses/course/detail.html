@@ -19,6 +19,17 @@
                 {% endblocktrans %}
             </p>
             {{ object.overview|linebreaks }}
+            {% if request.user.is_authenticated %}
+                <form action="{% url "students:enroll_course" %}" method="post">
+                    {{ enroll_form }}
+                    {% csrf_token %}
+                    <input type="submit" class="button" value="{% trans "Enroll now" %}">
+                </form>
+            {% else %}
+                <a href="{% url "students:registration" %}" class="button">
+                    {% trans "Register to enroll" %}
+                </a>
+            {% endif %}
         </div>
     {% endwith %}
 {% endblock %}

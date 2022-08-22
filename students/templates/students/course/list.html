@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My courses" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "My courses" %}</h1>
+    <div class="module">
+        {% for course in object_list %}
+            <div class="course-info">
+                <h3>{{ course.title }}</h3>
+                <p><a href="{% url "students:course_detail" course.id %}">
+                    {% trans "Access contents" %}
+                </a></p>
+            </div>
+        {% empty %}
+            <p>
+                {% url "course_list" as course_list %}
+                {% blocktrans %}
+                    You are not enrolled in any courses yet.
+                    <a href="{{ course_list }}">Browse courses</a>
+                     to enroll in a course.
+                {% endblocktrans %}
+            </p>
+        {% endfor %}
+    </div>
+{% endblock %}
