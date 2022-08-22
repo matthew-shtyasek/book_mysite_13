@@ -13,8 +13,8 @@
             <p>
                 <a href="{% url "courses:list_subject" subject.slug %}">{{ subject.title }}</a>
                 <br>
-                {% blocktrans with modules_count=course.modules.count owner_name=course.owner.get_full_name %}
-                    {{ modules_count }} modules.
+                {% blocktrans with total_modules=course.modules.count owner_name=course.owner.get_full_name %}
+                    {{ total_modules }} modules.
                     Instructor: {{ owner_name }}
                 {% endblocktrans %}
             </p>

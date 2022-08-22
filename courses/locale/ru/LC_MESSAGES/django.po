@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-21 16:59+0500\n"
-"PO-Revision-Date: 2022-08-21 16:59+0000\n"
+"POT-Creation-Date: 2022-08-21 17:21+0500\n"
+"PO-Revision-Date: 2022-08-21 17:22+0000\n"
 "Last-Translator: Матей Штясек <shtyasek2003@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -23,10 +23,6 @@ msgstr ""
 msgid "Title"
 msgstr "Заголовок"
 
-#: .\courses\models.py:15 .\courses\models.py:41
-msgid "Slug"
-msgstr "Название страницы"
-
 #: .\courses\models.py:29
 msgid "Owner"
 msgstr "Владелец"
@@ -39,26 +35,26 @@ msgstr "Предмет"
 msgid "Overview"
 msgstr "Обзор"
 
-#: .\courses\models.py:44
+#: .\courses\models.py:41
 msgid "Created"
 msgstr "Создано"
 
-#: .\courses\models.py:102
+#: .\courses\models.py:99
 #: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr "Текст"
 
-#: .\courses\models.py:107
+#: .\courses\models.py:104
 #: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr "Файл"
 
-#: .\courses\models.py:112
+#: .\courses\models.py:109
 #: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr "Изображение"
 
-#: .\courses\models.py:116
+#: .\courses\models.py:113
 #: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr "Видео"
@@ -84,12 +80,12 @@ msgstr "Язык"
 #| "                    "
 msgid ""
 "\n"
-"                    %(modules_count)s modules.\n"
+"                    %(total_modules)s modules.\n"
 "                    Instructor: %(owner_name)s\n"
 "                "
 msgstr ""
 "\n"
-"%(modules_count)s модулей.\n"
+"%(total_modules)s модулей.\n"
 "Автор: %(owner_name)s"
 
 #: .\courses\templates\courses\course\list.html:6
@@ -258,6 +254,20 @@ msgstr "Модули курса"
 #: .\courses\templates\courses\manage\module\formset.html:18
 msgid "Save modules"
 msgstr "Сохранить модули"
+
+#~ msgid "Slug"
+#~ msgstr "Название страницы"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                    %(modules_count)s modules.\n"
+#~ "                    Instructor: %(owner_name)s\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "%(modules_count)s модулей.\n"
+#~ "Автор: %(owner_name)s"
 
 #~ msgid "Description"
 #~ msgstr "Описание"

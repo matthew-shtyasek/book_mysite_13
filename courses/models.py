@@ -12,11 +12,11 @@ from courses.fields import OrderField
 class Subject(TranslatableModel):
     translations = TranslatedFields(
         title=models.CharField(max_length=200, verbose_name=_("Title")),
-        slug=models.SlugField(max_length=200, unique=True, db_index=True, verbose_name=_("Slug")),
     )
+    slug = models.SlugField(max_length=200, unique=True, db_index=True)
 
-    # class Meta:
-        # ordering = ['slug']
+    class Meta:
+        ordering = ['slug']
 
     def __str__(self):
         return self.title
@@ -35,11 +35,8 @@ class Course(TranslatableModel):
         title=models.CharField(max_length=200,
                                verbose_name=_("Title")),
         overview=models.TextField(verbose_name=_("Overview")),
-        slug=models.SlugField(max_length=200,
-                              unique=True,
-                              db_index=True,
-                              verbose_name=_("Slug")),
     )
+    slug = models.SlugField(max_length=200, unique=True, db_index=True)
     created = models.DateTimeField(auto_now_add=True,
                                    verbose_name=_("Created"))
 

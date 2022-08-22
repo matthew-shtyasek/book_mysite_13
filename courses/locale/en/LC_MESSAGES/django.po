@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-21 16:59+0500\n"
+"POT-Creation-Date: 2022-08-21 17:21+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,10 +20,6 @@ msgstr ""
 
 #: .\courses\models.py:14 .\courses\models.py:36
 msgid "Title"
-msgstr ""
-
-#: .\courses\models.py:15 .\courses\models.py:41
-msgid "Slug"
 msgstr ""
 
 #: .\courses\models.py:29
@@ -38,26 +34,26 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: .\courses\models.py:44
+#: .\courses\models.py:41
 msgid "Created"
 msgstr ""
 
-#: .\courses\models.py:102
+#: .\courses\models.py:99
 #: .\courses\templates\courses\manage\module\content_list.html:63
 msgid "Text"
 msgstr ""
 
-#: .\courses\models.py:107
+#: .\courses\models.py:104
 #: .\courses\templates\courses\manage\module\content_list.html:66
 msgid "File"
 msgstr ""
 
-#: .\courses\models.py:112
+#: .\courses\models.py:109
 #: .\courses\templates\courses\manage\module\content_list.html:64
 msgid "Image"
 msgstr ""
 
-#: .\courses\models.py:116
+#: .\courses\models.py:113
 #: .\courses\templates\courses\manage\module\content_list.html:65
 msgid "Video"
 msgstr ""
@@ -78,7 +74,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                    %(modules_count)s modules.\n"
+"                    %(total_modules)s modules.\n"
 "                    Instructor: %(owner_name)s\n"
 "                "
 msgstr ""

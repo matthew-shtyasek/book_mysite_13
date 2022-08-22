@@ -290,12 +290,16 @@ class CourseListView(TemplateResponseMixin, View):
     def get(self, request, subject_slug=None):
         subjects = Subject.objects.annotate(
             total_courses=Count('courses'))
-        courses = Course.objects.annotate(total_modules=Count('modules'))
+        # courses = Course.objects.annotate(total_modules=Count('modules'))
         subject = None
         if subject_slug:
             language = request.LANGUAGE_CODE
-            subject = get_object_or_404(Subject, translations__slug=subject_slug)
+            subject = get_object_or_404(Subject, slug=subject_slug)
             courses = Course.objects.filter(subject=subject)
+        else:
+            courses = Course.objects.all()
+        courses = courses.annotate(total_modules=Count('modules'))
+
         context = {
             'subjects': subjects,
             'subject': subject,
@@ -304,7 +308,7 @@ class CourseListView(TemplateResponseMixin, View):
         return self.render_to_response(context)
 
 
-class CourseDetailView(TranslatableSlugMixin, DetailView):
+class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/course/detail.html'
 
