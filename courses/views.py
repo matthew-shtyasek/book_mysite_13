@@ -1,6 +1,7 @@
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.apps import apps
 from django.conf import settings
+from django.core.cache import cache
 from django.db.models import Count
 from django.forms import Form, modelform_factory
 from django.http import Http404
@@ -295,17 +296,27 @@ class CourseListView(TemplateResponseMixin, View):
     template_name = 'courses/course/list.html'
 
     def get(self, request, subject_slug=None):
-        subjects = Subject.objects.annotate(
-            total_courses=Count('courses'))
+        subjects = cache.get('all_subjects')
+        if not subjects:
+            subjects = Subject.objects.annotate(
+                total_courses=Count('courses'))
+            cache.set('all_subjects', subjects)
+        all_courses = Course.objects.annotate(total_modules=Count('modules'))
         # courses = Course.objects.annotate(total_modules=Count('modules'))
         subject = None
         if subject_slug:
             language = request.LANGUAGE_CODE
             subject = get_object_or_404(Subject, slug=subject_slug)
-            courses = Course.objects.filter(subject=subject)
+            key = f'subjects_{subject.id}_courses'
+            courses = cache.get(key)
+            if not courses:
+                courses = all_courses.filter(subject=subject)
+                cache.set(key, courses)
         else:
-            courses = Course.objects.all()
-        courses = courses.annotate(total_modules=Count('modules'))
+            courses = cache.get('all_courses')
+            if not courses:
+                courses = all_courses
+                cache.set('all_courses', courses)
 
         context = {
             'subjects': subjects,

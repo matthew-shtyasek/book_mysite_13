@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'memcache_status.apps.MemcacheStatusConfig',
     'courses.apps.CoursesConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
@@ -148,3 +149,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = reverse_lazy('students:course_list')
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
