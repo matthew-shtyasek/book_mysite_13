@@ -61,8 +61,8 @@ class Module(models.Model):
     course = models.ForeignKey(Course,
                                related_name='modules',
                                on_delete=models.CASCADE)
-    title=models.CharField(max_length=200, verbose_name=_("Title"))
-    description=models.TextField(blank=True, verbose_name=_("Description"))
+    title = models.CharField(max_length=200, verbose_name=_("Title"))
+    description = models.TextField(blank=True, verbose_name=_("Description"))
     order = OrderField(blank=True,
                        for_fields=['course'])
 
