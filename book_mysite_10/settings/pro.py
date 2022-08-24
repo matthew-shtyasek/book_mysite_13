@@ -6,7 +6,7 @@ ADMINS = (
     ('Shtyasek M', 'shtyasek2003@mail.ru'),
 )
 
-ALLOWED_HOSTS = ['book_mysite_10.com', 'www.book_mysite_10.com']
+ALLOWED_HOSTS = ['.book_mysite_10.com']
 
 DATABASES = {
     'default': {
