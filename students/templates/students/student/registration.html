@@ -9,6 +9,7 @@
         <p>{% trans "Enter your details to create account:" %}</p>
         <form action="" method="post">
             {{ form.as_p }}
+            {% csrf_token %}
             <input type="submit" value="{% trans "Create my account" %}">
         </form>
     </div>

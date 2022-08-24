@@ -167,3 +167,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
     ]
 }
+
+DEFAULT_FROM_MAIL = 'shtyasek2003@mail.ru'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
