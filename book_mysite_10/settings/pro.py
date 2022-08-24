@@ -17,6 +17,9 @@ DATABASES = {
     },
 }
 
+SECURE_SSL_REDIRECT = True  # every HTTP redirected to HTTPS
+CSRF_COOKIE_SECURE = True  # При работе с куками и CSRF учитывается HTTPS
+
 # export DJANGO_SETTINGS_MODULE=book_mysite_10.settings.pro - env var for current console session
 # python manage.py migrate --settings=book_mysite_10.settings.pro - for current program
 
